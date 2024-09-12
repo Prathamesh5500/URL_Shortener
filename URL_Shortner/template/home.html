@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap URL Shortener</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <style>
+      body {
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #d6d6d6;
+      }
+
+      .form-signin {
+        max-width: 400px;
+        padding: 1.5rem;
+        border-radius: 8px;
+        background-color: white;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      .short-url-box {
+        margin-top: 20px;
+        padding: 10px;
+        background-color: #e9ecef;
+        border-radius: 8px;
+        text-align: center;
+      }
+
+      .short-url-box a {
+        color: #007bff;
+        font-weight: bold;
+        text-decoration: none;
+      }
+
+      .short-url-box a:hover {
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+  <body>
+    <main class="form-signin w-100 m-auto">
+      <form method="post">
+        {% csrf_token %}
+        <div class="form-floating">
+          <input type="url" class="form-control" id="floatingInput" name="url" placeholder="Enter URL" required>
+          <label for="floatingInput">Enter URL</label>
+        </div>
+
+        <button class="btn btn-primary w-100 py-2 mt-3" type="submit">Submit</button>
+      </form>
+
+      {% if shorter %}
+        <div class="short-url-box">
+          <p>Your short URL is: <a href="{{ shorter }}" target="_blank">{{ shorter }}</a></p>
+        </div>
+      {% endif %}
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+  </body>
+</html>
